@@ -4,13 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 
 public class Select implements Query {
 	private final String[] fields;
-	private String from;
+	private Table from;
 
 	public Select(String... fields) {
 		this.fields = fields;
 	}
 
-	public Query from(String table) {
+	public Query from(Table table) {
 		this.from = table;
 		return this;
 	}
@@ -24,7 +24,7 @@ public class Select implements Query {
 		if(from == null) {
 			throw new QueryBuilderException("Error building 'select' statement: 'from' clause missing");
 		}
-		return from;
+		return from.getName();
 	}
 
 	private String buildFieldsList() {
