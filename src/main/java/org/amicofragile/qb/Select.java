@@ -13,7 +13,7 @@ public class Select implements Query {
 	public Select() {
 		this.items = new LinkedList<String>();
 	}
-	
+
 	public Select(String... fields) {
 		this();
 		for (String field : fields) {
