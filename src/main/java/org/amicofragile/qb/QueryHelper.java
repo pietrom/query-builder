@@ -13,4 +13,8 @@ public class QueryHelper {
 	public static Table table(String tableName, String synonymous) {
 		return new Table(tableName, synonymous);
 	}
+	
+	public static SelectItem count() {
+		return new SelectItem("count(*)");
+	}
 }

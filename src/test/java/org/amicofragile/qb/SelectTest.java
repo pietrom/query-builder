@@ -20,6 +20,13 @@ public class SelectTest {
 	}
 	
 	@Test
+	public void selectCountFromGivenTable() throws Exception {
+		Query select = new Select(count()).from(table("a_table"));
+		String sql = select.getSql();
+		assertEquals("select count(*) from a_table", sql);
+	}
+	
+	@Test
 	public void selectGivenFieldsFromGivenTableUsingSelectItemModel() throws Exception {
 		Query select = new Select(field("a"), field("b"), field("c")).from(table("a_table"));
 		String sql = select.getSql();
