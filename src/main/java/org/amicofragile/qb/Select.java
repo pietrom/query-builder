@@ -7,11 +7,25 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 public class Select implements Query {
-	private final String[] fields;
+	private final List<String> items;
 	private List<String> from;
 
+	public Select() {
+		this.items = new LinkedList<String>();
+	}
+	
 	public Select(String... fields) {
-		this.fields = fields;
+		this();
+		for (String field : fields) {
+			items.add(field(field).toSql());
+		}
+	}
+
+	public Select(SelectItem... items) {
+		this();
+		for (SelectItem item : items) {
+			this.items.add(item.toSql());
+		}
 	}
 
 	public Query from(String first, String... others) {
@@ -47,9 +61,9 @@ public class Select implements Query {
 	}
 
 	private String buildFieldsList() {
-		if (fields.length == 0) {
+		if (items.isEmpty()) {
 			return "*";
 		}
-		return StringUtils.join(fields, ", ");
+		return StringUtils.join(items, ", ");
 	}
 }
