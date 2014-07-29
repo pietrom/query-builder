@@ -1,5 +1,7 @@
 package org.amicofragile.qb;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Table {
 	private final String name;
 	private final String synonymous;
@@ -19,5 +21,13 @@ public class Table {
 
 	public String getName() {
 		return name;
+	}
+
+	public String toSql() {
+		String sql = name;
+		if (StringUtils.isNotEmpty(synonymous)) {
+			sql += " " + synonymous;
+		}
+		return sql;
 	}
 }

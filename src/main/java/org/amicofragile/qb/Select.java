@@ -21,14 +21,14 @@ public class Select implements Query {
 	}
 
 	private String buildFromClause() {
-		if(from == null) {
+		if (from == null) {
 			throw new QueryBuilderException("Error building 'select' statement: 'from' clause missing");
 		}
-		return from.getName();
+		return from.toSql();
 	}
 
 	private String buildFieldsList() {
-		if(fields.length == 0) {
+		if (fields.length == 0) {
 			return "*";
 		}
 		return StringUtils.join(fields, ", ");
