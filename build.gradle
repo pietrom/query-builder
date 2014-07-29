@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+group = 'org.amicofragile.query-builder'
+version = '1.0.0-SNAPSHOT'
+
+description = """SQL query building library"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testCompile 'junit:junit:4.11'
+	compile 'org.apache.commons:commons-lang3:3.3.2'
+}
