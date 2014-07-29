@@ -5,17 +5,20 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class QueryHelperTest {
+	private static final String SYNONYMOUS = "a_syn";
+	private static final String TABLE_NAME = "a_table";
+
 	@Test
 	public void createTable() throws Exception {
-		Table t = QueryHelper.table("a_table");
-		assertEquals("a_table", t.getName());
+		Table t = QueryHelper.table(TABLE_NAME);
+		assertEquals(TABLE_NAME, t.getName());
 		assertNull(t.getSynonymous());
 	}
 
 	@Test
 	public void createTableProvidingSynonymous() throws Exception {
-		Table t = QueryHelper.table("a_table", "a_syn");
-		assertEquals("a_table", t.getName());
-		assertEquals("a_syn", t.getSynonymous());
+		Table t = QueryHelper.table(TABLE_NAME, SYNONYMOUS);
+		assertEquals(TABLE_NAME, t.getName());
+		assertEquals(SYNONYMOUS, t.getSynonymous());
 	}
 }
