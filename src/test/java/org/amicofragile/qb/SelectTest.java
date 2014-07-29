@@ -32,4 +32,11 @@ public class SelectTest {
 		String sql = select.getSql();
 		assertEquals("select * from a_table a_syn", sql);
 	}
+
+	@Test
+	public void selectStarFromMultipleTablesUsingSynonymous() throws Exception {
+		Query select = new Select().from(table("a_table", "a_syn"), table("b_table", "b_syn"), table("c_table", "c_syn"));
+		String sql = select.getSql();
+		assertEquals("select * from a_table a_syn, b_table b_syn, c_table c_syn", sql);
+	}
 }
