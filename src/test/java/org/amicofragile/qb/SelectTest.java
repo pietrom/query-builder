@@ -18,6 +18,20 @@ public class SelectTest {
 		String sql = select.getSql();
 		assertEquals("select a, b, c from a_table", sql);
 	}
+	
+	@Test
+	public void selectGivenFieldsFromGivenTableName() throws Exception {
+		Query select = new Select("a", "b", "c").from("a_table");
+		String sql = select.getSql();
+		assertEquals("select a, b, c from a_table", sql);
+	}
+	
+	@Test
+	public void selectGivenFieldsFromGivenTableNames() throws Exception {
+		Query select = new Select("a", "b", "c").from("a_table", "b_table");
+		String sql = select.getSql();
+		assertEquals("select a, b, c from a_table, b_table", sql);
+	}
 
 	@Test
 	public void selectStarFromGivenTable() throws Exception {

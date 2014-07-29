@@ -1,6 +1,7 @@
 package org.amicofragile.qb;
 
 import java.util.LinkedList;
+import static org.amicofragile.qb.QueryHelper.*;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +12,16 @@ public class Select implements Query {
 
 	public Select(String... fields) {
 		this.fields = fields;
+	}
+
+	public Query from(String first, String... others) {
+		this.from = new LinkedList<String>();
+		from.add(table(first).toSql());
+		Table[] o = new Table[others.length];
+		for (String other : others) {
+			from.add(table(other).toSql());
+		}
+		return this;
 	}
 
 	public Query from(Table first, Table... other) {
