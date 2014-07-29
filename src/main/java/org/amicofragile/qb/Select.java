@@ -31,7 +31,6 @@ public class Select implements Query {
 	public Query from(String first, String... others) {
 		this.from = new LinkedList<String>();
 		from.add(table(first).toSql());
-		Table[] o = new Table[others.length];
 		for (String other : others) {
 			from.add(table(other).toSql());
 		}
