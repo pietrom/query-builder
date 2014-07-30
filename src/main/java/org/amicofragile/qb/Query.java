@@ -1,5 +1,5 @@
 package org.amicofragile.qb;
 
 public interface Query {
-	public abstract String getSql();
+	public abstract String getSql(SqlDialect dialect);
 }

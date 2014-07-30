@@ -1,30 +1,32 @@
 package org.amicofragile.qb;
 
 import java.util.LinkedList;
+
 import static org.amicofragile.qb.QueryHelper.*;
+
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
 public class Select implements Query {
-	private final List<String> items;
+	private final List<SelectItem> items;
 	private List<String> from;
 
 	public Select() {
-		this.items = new LinkedList<String>();
+		this.items = new LinkedList<SelectItem>();
 	}
 
 	public Select(String... fields) {
 		this();
 		for (String field : fields) {
-			items.add(field(field).toSql());
+			items.add(field(field));
 		}
 	}
 
-	public Select(SelectItem... items) {
+	public Select(SimpleItem... items) {
 		this();
-		for (SelectItem item : items) {
-			this.items.add(item.toSql());
+		for (SimpleItem item : items) {
+			this.items.add(item);
 		}
 	}
 
@@ -47,22 +49,30 @@ public class Select implements Query {
 	}
 
 	@Override
-	public String getSql() {
-		return String.format("select %s from %s", buildFieldsList(), buildFromClause());
+	public String getSql(SqlDialect dialect) {
+		return String.format("select %s from %s", buildFieldsList(dialect), buildFromClause(dialect));
 	}
 
-	private String buildFromClause() {
+	private String buildFromClause(SqlDialect dialect) {
 		if (from == null) {
 			throw new QueryBuilderException("Error building 'select' statement: 'from' clause missing");
 		}
-
 		return StringUtils.join(from, ", ");
 	}
 
-	private String buildFieldsList() {
+	private String buildFieldsList(SqlDialect dialect) {
 		if (items.isEmpty()) {
 			return "*";
 		}
-		return StringUtils.join(items, ", ");
+		final List<String> itemsAsString = getItemsAsString(dialect);
+		return StringUtils.join(itemsAsString, ", ");
+	}
+
+	private List<String> getItemsAsString(SqlDialect dialect) {
+		final List<String> result = new LinkedList<String>();
+		for (SelectItem item : items) {
+			result.add(item.toSql(dialect));
+		}
+		return result;
 	}
 }

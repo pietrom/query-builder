@@ -6,19 +6,19 @@ public class QueryHelper {
 		return new Table(tableName);
 	}
 
-	public static SelectItem field(String fieldName) {
-		return new SelectItem(fieldName);
+	public static SimpleItem field(String fieldName) {
+		return new SimpleItem(fieldName);
 	}
 
-	public static SelectItem field(String fieldName, String alias) {
-		return new SelectItem(fieldName, alias);
+	public static SimpleItem field(String fieldName, String alias) {
+		return new SimpleItem(fieldName, alias);
 	}
 
 	public static Table table(String tableName, String synonymous) {
 		return new Table(tableName, synonymous);
 	}
 
-	public static SelectItem count() {
-		return new SelectItem("count(*)");
+	public static SimpleItem count() {
+		return new SimpleItem("count(*)");
 	}
 }
