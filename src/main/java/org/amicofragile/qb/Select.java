@@ -50,12 +50,14 @@ public class Select implements Query {
 
 	@Override
 	public String getSql(SqlDialect dialect) {
-		return String.format("select %s from %s", buildFieldsList(dialect), buildFromClause(dialect));
+		return String.format("select %s from %s", buildFieldsList(dialect),
+				buildFromClause(dialect));
 	}
 
 	private String buildFromClause(SqlDialect dialect) {
 		if (from == null) {
-			throw new QueryBuilderException("Error building 'select' statement: 'from' clause missing");
+			throw new QueryBuilderException(
+					"Error building 'select' statement: 'from' clause missing");
 		}
 		return StringUtils.join(from, ", ");
 	}

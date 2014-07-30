@@ -28,14 +28,17 @@ public class SelectTest {
 
 	@Test
 	public void selectFieldsWithAlias() throws Exception {
-		Query select = new Select(field("a", "aa"), field("b", "bb")).from(table("a_table"));
+		Query select = new Select(field("a", "aa"), field("b", "bb"))
+				.from(table("a_table"));
 		String sql = select.getSql(null);
 		assertEquals("select a as aa, b as bb from a_table", sql);
 	}
 
 	@Test
-	public void selectGivenFieldsFromGivenTableUsingSelectItemModel() throws Exception {
-		Query select = new Select(field("a"), field("b"), field("c")).from(table("a_table"));
+	public void selectGivenFieldsFromGivenTableUsingSelectItemModel()
+			throws Exception {
+		Query select = new Select(field("a"), field("b"), field("c"))
+				.from(table("a_table"));
 		String sql = select.getSql(null);
 		assertEquals("select a, b, c from a_table", sql);
 	}
@@ -70,8 +73,11 @@ public class SelectTest {
 
 	@Test
 	public void selectStarFromMultipleTablesUsingSynonymous() throws Exception {
-		Query select = new Select().from(table("a_table", "a_syn"), table("b_table", "b_syn"), table("c_table", "c_syn"));
+		Query select = new Select().from(table("a_table", "a_syn"),
+				table("b_table", "b_syn"), table("c_table", "c_syn"));
 		String sql = select.getSql(null);
-		assertEquals("select * from a_table a_syn, b_table b_syn, c_table c_syn", sql);
+		assertEquals(
+				"select * from a_table a_syn, b_table b_syn, c_table c_syn",
+				sql);
 	}
 }
