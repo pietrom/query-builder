@@ -1,4 +1,5 @@
-package org.amicofragile.qb;
+package org.amicofragile.qb.dialect;
+
 
 public class SqlServerDialect implements SqlDialect {
 

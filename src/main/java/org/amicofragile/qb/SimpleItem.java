@@ -1,5 +1,6 @@
 package org.amicofragile.qb;
 
+import org.amicofragile.qb.dialect.SqlDialect;
 import org.apache.commons.lang3.StringUtils;
 
 public class SimpleItem implements SelectItem {

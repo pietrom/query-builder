@@ -1,7 +1,9 @@
 package org.amicofragile.qb;
 
-import static org.junit.Assert.*;
-import static org.amicofragile.qb.QueryHelper.*;
+import static org.amicofragile.qb.QueryHelper.count;
+import static org.amicofragile.qb.QueryHelper.field;
+import static org.amicofragile.qb.QueryHelper.table;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

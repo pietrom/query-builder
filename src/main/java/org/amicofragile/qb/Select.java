@@ -1,11 +1,12 @@
 package org.amicofragile.qb;
 
+import static org.amicofragile.qb.QueryHelper.field;
+import static org.amicofragile.qb.QueryHelper.table;
+
 import java.util.LinkedList;
-
-import static org.amicofragile.qb.QueryHelper.*;
-
 import java.util.List;
 
+import org.amicofragile.qb.dialect.SqlDialect;
 import org.apache.commons.lang3.StringUtils;
 
 public class Select implements Query {

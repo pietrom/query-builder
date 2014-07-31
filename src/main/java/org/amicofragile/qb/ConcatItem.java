@@ -1,5 +1,7 @@
 package org.amicofragile.qb;
 
+import org.amicofragile.qb.dialect.SqlDialect;
+
 public class ConcatItem implements SelectItem {
 	private final SelectItem left, right;
 

@@ -1,7 +1,8 @@
 package org.amicofragile.qb;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import org.amicofragile.qb.dialect.SqlDialect;
 import org.junit.Test;
 
 public class ConcatItemTest {
