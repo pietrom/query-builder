@@ -17,3 +17,10 @@ dependencies {
 	testCompile 'junit:junit:4.11'
 	compile 'org.apache.commons:commons-lang3:3.3.2'
 }
+
+eclipse {
+    classpath {
+         containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+         containers "org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-${targetCompatibility}"
+    }
+}
